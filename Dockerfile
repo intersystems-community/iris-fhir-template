@@ -13,7 +13,9 @@ USER ${ISC_PACKAGE_MGRUSER}
 
 COPY  Installer.cls .
 COPY  src src
+COPY fhir fhir
 COPY iris.script /tmp/iris.script
+COPY fhirUI /usr/irissys/csp/fhirUI
 
 # run iris and initial 
 RUN iris start IRIS \
