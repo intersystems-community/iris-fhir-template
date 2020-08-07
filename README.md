@@ -1,6 +1,7 @@
-## intersystems-objectscript-template
-This is a template for InterSystems ObjectScript Github repository.
-The template goes also with a few files which let you immedietly compile your ObjecScript files in InterSystems IRIS Community Edition in a docker container
+## intersystems-fhirserver-template
+Base template for using InterSystems IRIS for Health Community Edition as a FHIR Server
+
+It setups a FHIR SERVER, imports the test data, demoes REST API usage with a simple web page.
 
 ## Prerequisites
 Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Docker desktop](https://www.docker.com/products/docker-desktop) installed.
@@ -10,30 +11,30 @@ Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installi
 Clone/git pull the repo into any local directory
 
 ```
-$ git clone https://github.com/intersystems-community/objectscript-docker-template.git
+$ git clone https://github.com/intersystems-community/iris-fhir-template.git
 ```
 
 Open the terminal in this directory and run:
 
 ```
-$ docker-compose build
-```
-
-3. Run the IRIS container with your project:
-
-```
 $ docker-compose up -d
 ```
 
-## How to Test it
+## Testing FHIR R4 API
 
-Open IRIS terminal:
+Open URL http://localhost:32783/fhir/r4/metadata
+you should see the output of fhir resources on this server
 
-```
-$ docker-compose exec iris iris session iris
-USER>zn "IRISAPP"
-IRISAPP>write ##class(PackageSample.ObjectScript).Test()
-```
+## Testing Postman calls
+
+Open Postman and make a GET call for the preloaded Patient:
+http://localhost:32783/fhir/r4/Patient/1
+
+## Testing FHIR API calls in simple frontend APP
+
+the very basic frontend app with search and get calls to Patient and Observation FHIR resources could be found here:
+http://localhost:32783/csp/user/fhirUI/FHIRAppDemo.html
+
 ## How to start coding
 This repository is ready to code in VSCode with ObjectScript plugin.
 Install [VSCode](https://code.visualstudio.com/), [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) and [ObjectScript](https://marketplace.visualstudio.com/items?itemName=daimor.vscode-objectscript) plugin and open the folder in VSCode.
@@ -54,15 +55,6 @@ The script in Installer.cls will import everything you place under /src into IRI
 The simplest dockerfile which starts IRIS and imports Installer.cls and then runs the Installer.setup method, which creates IRISAPP Namespace and imports ObjectScript code from /src folder into it.
 Use the related docker-compose.yml to easily setup additional parametes like port number and where you map keys and host folders.
 Use .env/ file to adjust the dockerfile being used in docker-compose.
-
-### Dockerfile-zpm
-
-Dockerfile-zpm builds for you a container which contains ZPM package manager client so you are able to install packages from ZPM in this container.
-As an example of usage in installs webterminal
-
-### Dockerfile-web
-
-Dockerfile-web starts IRIS does the same what Dockerfile does and also sets up the web app programmatically
 
 
 ### .vscode/settings.json

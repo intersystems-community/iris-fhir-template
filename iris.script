@@ -17,27 +17,13 @@ Do ##class(HS.FHIRServer.Installer).InstallNamespace()
 
 // Install an instance of a FHIR Service into the current namespace
 Do ##class(HS.FHIRServer.Installer).InstallInstance(appKey, strategyClass, metadataConfigKey,"",0)
-//do ##class(Ens.Director).StopProduction()
-//zw $classmethod("Ens.Director", "SetAutoStart", "FHIRHL7V2DEMOPKG.FoundationProduction", 0)
-
-//do $system.OBJ.ImportDir(importdir,"*.*","cdk",.errors,1)
 
 set strategy = ##class(HS.FHIRServer.API.InteractionsStrategy).GetStrategyForEndpoint(appKey)
 set config = strategy.GetServiceConfigData()
 set config.DebugMode = 4
 do strategy.SaveServiceConfigData(config)
 
-zw ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles("/opt/irisapp/fhir/", namespace, appKey)
+zw ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles("/opt/irisapp/fhirdata/", namespace, appKey)
 
-zn "%SYS"
-write "Create FHIR UI web app ..." 
-set webName = "/fhirUI" 
-set webProperties("NameSpace") = namespace 
-set webProperties("Enabled") = 1 
-set webProperties("Path") = "/irisdev/app/fhirUI"
-set webProperties("AutheEnabled") = 64 
-set webProperties("ServeFiles")=2
-set webProperties("Recurse")=1
-zw ##class(Security.Applications).Create(webName, .webProperties)
-
+do $System.OBJ.LoadDir("/opt/irisapp/src","ck",,1)
 halt

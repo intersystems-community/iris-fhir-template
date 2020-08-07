@@ -11,11 +11,10 @@ WORKDIR /opt/irisapp
 RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/irisapp
 USER ${ISC_PACKAGE_MGRUSER}
 
-COPY  Installer.cls .
 COPY  src src
-COPY fhir fhir
+COPY fhirdata fhirdata
 COPY iris.script /tmp/iris.script
-COPY fhirUI /usr/irissys/csp/fhirUI
+COPY fhirUI /usr/irissys/csp/user/fhirUI
 
 # run iris and initial 
 RUN iris start IRIS \
