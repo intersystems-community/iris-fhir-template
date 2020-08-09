@@ -12,7 +12,7 @@ RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/irisapp
 USER ${ISC_PACKAGE_MGRUSER}
 
 COPY  src src
-COPY fhirdata fhirdata
+COPY data/fhir fhirdata
 COPY iris.script /tmp/iris.script
 COPY fhirUI /usr/irissys/csp/user/fhirUI
 

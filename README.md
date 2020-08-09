@@ -21,8 +21,22 @@ $ docker-compose up -d
 ```
 
 ## Patient data
-The template goes with 5 preloaded patents in [/fhirdata](https://github.com/intersystems-community/iris-fhir-server-template/tree/master/fhirdata) folder which are being loaded during [docker build](https://github.com/intersystems-community/iris-fhir-server-template/blob/8bd2932b34468f14530a53d3ab5125f9077696bb/iris.script#L26)
-You can generate more patients with using the [following project](https://github.com/intersystems-community/irisdemo-base-synthea)
+The template goes with 5 preloaded patents in [/data/fhir](https://github.com/intersystems-community/iris-fhir-server-template/tree/master/data/fhir) folder which are being loaded during [docker build](https://github.com/intersystems-community/iris-fhir-server-template/blob/8bd2932b34468f14530a53d3ab5125f9077696bb/iris.script#L26)
+You can generate more patients doing the following. Open shel terminal in repository folder and call:
+```
+#./synthea-loader.sh 10
+```
+this will create 10 more patients in data/fhir folder.
+Then open IRIS terminal in FHIRSERVER namespace with the following command:
+```
+docker-compose exec iris iris session iris -U FHIRServer
+```
+and call the loader method:
+```
+FHIRSERVER>d ##class(fhirtemplate.Setup).LoadPatientData("/irisdev/app/data/fhir","FHIRSERVER","/fhir/r4")
+```
+
+ with using the [following project](https://github.com/intersystems-community/irisdemo-base-synthea)
 
 ## Testing FHIR R4 API
 
@@ -86,3 +100,22 @@ Settings file to let you immedietly code in VSCode with [VSCode ObjectScript plu
 
 ### .vscode/launch.json
 Config file if you want to debug with VSCode ObjectScript
+
+
+## Troubleshooting
+**ERROR #5001: Error -28 Creating Directory /usr/irissys/mgr/FHIRSERVER/**
+If you see this error it probably means that you ran out of space in docker.
+you can clean up it with the following command:
+```
+docker system prune -f
+```
+And then start rebuilding image without using cache:
+```
+docker-compose build --no-cache
+```
+and start the container with:
+```
+docker-compose up -d
+```
+
+This and other helpful commands you can find in [dev.md](https://github.com/intersystems-community/iris-fhir-template/blob/cd7e0111ff94dcac82377a2aa7df0ce5e0571b5a/dev.md)

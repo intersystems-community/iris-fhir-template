@@ -15,17 +15,22 @@ ClassMethod SetupFHIRServer() As %Status
     zn namespace
 
     // Install elements that are required for a FHIR-enabled namespace
-    Do ##class(HS.FHIRServer.Installer).InstallNamespace()
+    zw ##class(HS.FHIRServer.Installer).InstallNamespace()
 
     // Install an instance of a FHIR Service into the current namespace
-    Do ##class(HS.FHIRServer.Installer).InstallInstance(appKey, strategyClass, metadataConfigKey,"",0)
+    zw ##class(HS.FHIRServer.Installer).InstallInstance(appKey, strategyClass, metadataConfigKey,"",0)
 
     set strategy = ##class(HS.FHIRServer.API.InteractionsStrategy).GetStrategyForEndpoint(appKey)
     set config = strategy.GetServiceConfigData()
     set config.DebugMode = 4
-    do strategy.SaveServiceConfigData(config)
+    zw strategy.SaveServiceConfigData(config)
     // load test data
     q ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles("/opt/irisapp/fhirdata/", namespace, appKey)
+}
+
+ClassMethod LoadPatientData(path, namespace, appKey) As %Status
+{
+    q ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles(path, namespace, appKey)
 }
 
 ClassMethod AddApp() As %Status

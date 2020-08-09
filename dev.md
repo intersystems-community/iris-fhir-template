@@ -8,6 +8,12 @@ docker system prune -f
 ```
 docker-compose build --no-cache
 ```
+
+## start container
+```
+docker-compose up -d
+```
+
 ## open terminal to docker
 ```
 docker-compose exec iris iris session iris -U FHIRServer
