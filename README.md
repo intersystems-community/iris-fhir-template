@@ -1,5 +1,5 @@
 # iris-fhirserver-template
-Base template for using InterSystems IRIS for Health Community Edition as a FHIR Server
+This is the base template for using InterSystems IRIS for Health Community Edition as a FHIR Server
 
 It setups a FHIR SERVER, imports the test data, demoes REST API usage with a simple web page.
 
@@ -58,7 +58,7 @@ While open the page you will see search result for female anemic patients and gr
 
 
 
-## How to start coding
+## How to start development
 This repository is ready to code in VSCode with ObjectScript plugin.
 Install [VSCode](https://code.visualstudio.com/), [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) and [ObjectScript](https://marketplace.visualstudio.com/items?itemName=daimor.vscode-objectscript) plugin and open the folder in VSCode.
 Open /src/cls/PackageSample/ObjectScript.cls class and try to make changes - it will be compiled in running IRIS docker container.
