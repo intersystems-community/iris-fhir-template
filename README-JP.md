@@ -108,3 +108,30 @@ IRIS を起動し、開発テンプレートに必要なファイルのコピー
 
 ### .vscode/launch.json
 VSCode ObjectScript でデバッグしたい場合の設定ファイルです。
+
+
+## トラブルシューティング
+
+### ERROR #5001: Error -28 Creating Directory /usr/irissys/mgr/FHIRSERVER/
+このエラーが出る場合、docker の空き容量を使い果たしてしまった可能性があります。以下のコマンドを利用して未使用のイメージ、キャッシュ、コンテナを削除することができます。
+（-f オプションを指定しない場合、確認要プロンプトが出力されます）
+
+```
+$ docker system prune -f
+```
+
+上記コマンド実行後、キャッシュを使用しないイメージの再構築を行います。
+
+```
+$ docker-compose build --no-cache
+```
+
+上記コマンド実行後、コンテナを開始します。
+
+```
+$ docker-compose up -d
+```
+
+この他のヒントについては、[dev.md](/dev.md) をご参照ください。
+
+
