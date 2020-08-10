@@ -114,7 +114,7 @@ VSCode ObjectScript でデバッグしたい場合の設定ファイルです。
 
 ### ERROR #5001: Error -28 Creating Directory /usr/irissys/mgr/FHIRSERVER/
 このエラーが出る場合、docker の空き容量を使い果たしてしまった可能性があります。以下のコマンドを利用して未使用のイメージ、キャッシュ、コンテナを削除することができます。
-（-f オプションを指定しない場合、確認要プロンプトが出力されます）
+（-f オプションを指定しない場合、確認用のプロンプトが出力されます）
 
 ```
 $ docker system prune -f
