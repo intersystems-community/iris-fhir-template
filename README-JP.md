@@ -25,6 +25,26 @@ $ docker-compose up -d
 ## Patient data
 このテンプレートでは、[/fhirdata](https://github.com/intersystems-community/iris-fhir-server-template/tree/master/fhirdata) フォルダに5人の患者データのサンプルを用意していて、[docker build](https://github.com/intersystems-community/iris-fhir-server-template/blob/8bd2932b34468f14530a53d3ab5125f9077696bb/iris.script#L26) のときにロードしています。
 
+また、[synthea-loader.sh](/synthea-loader.sh) を使用して任意数の患者データを生成できます。
+ターミナルを開き、git clone で生成されたディレクトリに移動し以下実行します（Windowsで実行する場合は、synthea-loader.bat をご利用ください。）。
+
+```
+#./synthea-loader.sh 5
+```
+
+上記実行により、5人の患者データ用ファイルが data/fhir 以下に追加されます。
+IRIS のターミナルを開き、FHIRSERVER へ移動します。
+
+```
+docker-compose exec iris iris session iris -U FHIRServer
+```
+
+FHIRSERVER のプロンプトが表示されたら以下実行します。
+
+```
+FHIRSERVER>do ##class(fhirtemplate.Setup).LoadPatientData("/irisdev/app/data/fhir","FHIRSERVER","/fhir/r4")
+```
+
 より多くの患者データサンプルを作成されたい場合は、こちら [following project](https://github.com/intersystems-community/irisdemo-base-synthea) をご利用ください。
 
 
