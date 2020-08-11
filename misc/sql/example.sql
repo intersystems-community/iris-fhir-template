@@ -33,7 +33,7 @@ SELECT
 ID, Key, ResourceString, 
 GetJSON(ResourceString,'code') as code, 
 GetJSON(GetJSON(ResourceString,'code'),'coding') as coding,
-GetAtJSON(GetJSON(GetJSON(ResourceString,'code'),'coding'),1) as coding1,
-GetJSON(GetAtJSON(GetJSON(GetJSON(ResourceString,'code'),'coding'),1),'display') as display,
-GetProp(GetJSON(GetAtJSON(GetJSON(GetJSON(ResourceString,'code'),'coding'),1),'display'),'display')
+GetAtJSON(GetJSON(GetJSON(ResourceString,'code'),'coding'),0) as coding1,
+GetJSON(GetAtJSON(GetJSON(GetJSON(ResourceString,'code'),'coding'),0),'display') as display,
+GetProp(GetJSON(GetAtJSON(GetJSON(GetJSON(ResourceString,'code'),'coding'),0),'display'),'display')
 FROM HSFHIR_I0001_R.Rsrc where Key = 'Observation/16'
