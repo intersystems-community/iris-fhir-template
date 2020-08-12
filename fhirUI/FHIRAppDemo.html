@@ -54,7 +54,8 @@
 	    type:'Patient', 
 		query: {
 		
-		
+          gender:'female',
+          '_has:Condition:patient:code':'271737000',
 		  birthdate:'le1993',
 		  _sort:'-birthdate',
 		  _count: 5

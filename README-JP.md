@@ -56,7 +56,7 @@ FHIRSERVER>do ##class(fhirtemplate.Setup).LoadPatientData("/irisdev/app/data/fhi
 http://localhost:32783/fhir/r4/metadata 
 
 
-## Posman を利用して Capability Statement を参照する 
+## Postman を利用して Capability Statement を参照する 
 FHIR リソースのメタ情報を取得するには、以下の GET要求を実行します。
 
 GET http://localhost:32783/fhir/r4/metadata
