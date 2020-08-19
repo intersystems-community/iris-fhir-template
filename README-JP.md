@@ -42,7 +42,7 @@ docker-compose exec iris iris session iris -U FHIRServer
 FHIRSERVER のプロンプトが表示されたら以下実行します。
 
 ```
-FHIRSERVER>do ##class(fhirtemplate.Setup).LoadPatientData("/irisdev/app/data/fhir","FHIRSERVER","/fhir/r4")
+FHIRSERVER>do ##class(fhirtemplate.Setup).LoadPatientData("/irisdev/app/output/fhir","FHIRSERVER","/fhir/r4")
 ```
 
 より多くの患者データサンプルを作成されたい場合は、こちら [following project](https://github.com/intersystems-community/irisdemo-base-synthea) をご利用ください。
