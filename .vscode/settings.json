@@ -18,18 +18,30 @@
       }
     },
     "sqltools.connections": [
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 062f941b446ee134a5ae6015857b18117c2c68d4
       {
         "askForPassword": false,
         "connectionMethod": "Server and Port",
         "driver": "InterSystems IRIS",
+<<<<<<< HEAD
         "name": "iris-fhir-template",
+=======
+        "name": "FHIR",
+>>>>>>> 062f941b446ee134a5ae6015857b18117c2c68d4
         "namespace": "FHIRSERVER",
         "password": "SYS",
         "port": 32783,
         "previewLimit": 50,
         "server": "localhost",
         "showSystem": false,
+<<<<<<< HEAD
         "username": "_SYSTEM"
+=======
+        "username": "SuperUser"
+>>>>>>> 062f941b446ee134a5ae6015857b18117c2c68d4
       }
     ]
 

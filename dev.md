@@ -30,7 +30,7 @@ do ##class(HS.FHIRServer.ConsoleSetup).Setup()
 
 ## load fhir resources
 ```
-zw ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles("/opt/irisapp/fhir/", "FHIRServer", "/fhir/r4")
+zw ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles("/irisdev/app/output/fhir/", "FHIRServer", "/fhir/r4")
 
 kill ^%ISCLOG
 
