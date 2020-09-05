@@ -16,6 +16,21 @@
         "FHIR UI Demo": "http://localhost:${port}/csp/user/fhirUI/FHIRAppDemo.html",
         "FHIR server test": "http://localhost:${port}/fhir/r4/metadata"
       }
-    }
+    },
+    "sqltools.connections": [
+      {
+        "askForPassword": false,
+        "connectionMethod": "Server and Port",
+        "driver": "InterSystems IRIS",
+        "name": "iris-fhir-template",
+        "namespace": "FHIRSERVER",
+        "password": "SYS",
+        "port": 32783,
+        "previewLimit": 50,
+        "server": "localhost",
+        "showSystem": false,
+        "username": "_SYSTEM"
+      }
+    ]
 
 }
