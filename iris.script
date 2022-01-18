@@ -5,7 +5,7 @@ zn "HSLIB"
 set namespace="FHIRSERVER"
 Set appKey = "/fhir/r4"
 Set strategyClass = "HS.FHIRServer.Storage.Json.InteractionsStrategy"
-Set metadataConfigKey = "HL7v40"
+set metadataPackages = $lb("hl7.fhir.r4.core@4.0.1")
 set importdir="/opt/irisapp/src"
 
 //Install a Foundation namespace and change to it
@@ -16,14 +16,15 @@ zn namespace
 Do ##class(HS.FHIRServer.Installer).InstallNamespace()
 
 // Install an instance of a FHIR Service into the current namespace
-Do ##class(HS.FHIRServer.Installer).InstallInstance(appKey, strategyClass, metadataConfigKey,"",0)
+Do ##class(HS.FHIRServer.Installer).InstallInstance(appKey, strategyClass, metadataPackages)
 
+// Configure FHIR Service instance to accept unauthenticated requests
 set strategy = ##class(HS.FHIRServer.API.InteractionsStrategy).GetStrategyForEndpoint(appKey)
 set config = strategy.GetServiceConfigData()
 set config.DebugMode = 4
 do strategy.SaveServiceConfigData(config)
 
-zw ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles("/opt/irisapp/fhirdata/", namespace, appKey)
+zw ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles("/opt/irisapp/fhirdata/", "FHIRServer", appKey)
 
 do $System.OBJ.LoadDir("/opt/irisapp/src","ck",,1)
 zpm "install fhir-portal"
