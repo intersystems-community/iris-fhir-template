@@ -1,6 +1,3 @@
-zn "%SYS"
-Do ##class(Security.Users).UnExpireUserPasswords("*")
-
 zn "HSLIB"
 set namespace="FHIRSERVER"
 Set appKey = "/fhir/r4"
