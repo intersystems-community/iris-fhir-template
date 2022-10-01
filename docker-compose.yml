@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: always
-    command: --check-caps false
+#   command: --check-caps false
     ports: 
       - 32782:1972
       - 32783:52773
@@ -13,3 +13,4 @@ services:
     command: 
       - -a
       - iris session iris -U%SYS '##class(Security.Users).UnExpireUserPasswords("*")'
+      - --check-caps false
