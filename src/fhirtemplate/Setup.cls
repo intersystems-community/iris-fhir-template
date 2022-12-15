@@ -27,8 +27,10 @@ ClassMethod SetupFHIRServer() As %Status
     set config = strategy.GetServiceConfigData()
     set config.DebugMode = 4
     do strategy.SaveServiceConfigData(config)
-    write !," ====== Load test data in "_ns
-    set st=##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles("/opt/irisapp/fhirdata/", "FHIRServer", appKey)
+
+    set dir=$System.Util.ManagerDirectory()_"test-data-fhir"
+    write !," ====== Load test data in "_ns_" from "_dir
+    set st=##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles(dir, "FHIRServer", appKey)
     if 'st write $System.Status.GetErrorText(st)
     quit st
 }
