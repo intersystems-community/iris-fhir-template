@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>GS2019 FHIR App</title>
+	<script src="jquery-3.4.1.min.js"></script>
+	<script src="jqFhir.js"></script>
+	<script src="plotly-latest.min.js"></script>
+	<style> 
+	  body {
+	    font: 12pt/2em sans-serif;
+		margin: 3em;
+	  }
+	  table, th, td {
+	    border: 1px solid black;
+		text-align: left;
+		text-indent: 10px;
+	  }
+	</style>
+  </head>
+
+  <body>  
+    <h3>Patients with Anemia</h3>
+	<table id="table" style="width:500px">
+	  <thead>
+        <tr>
+          <th>Name</th>
+          <th>ID</th>
+        </tr>
+      </thead>
+    </table>
+	<br>
+	<div>Patient ID: <input type="text" id="input"> <input type="button" onclick="plotValues()" value="Submit"></div>
+	<h3>Hemoglobin in Blood (g/dL)</h3>
+	<div id="chart" style="width:600px;height:400px;"></div>
+	
+	<script>
+      var patientTable = document.getElementById("table");
+      var inputBox = document.getElementById("input");
+	  var chartDiv = document.getElementById("chart");
+	  
+	  // Instantiate a new FHIR client
+	  var client = fhir({ 
+		baseUrl: '/fhir/r4',
+		
+		headers: {
+		  'Accept': 'application/fhir+json',
+		  'Content-Type': 'application/fhir+json;charset=UTF-8'
+		}
+	  });
+	  
+	  // Perform a search to retrieve anemic patients
+	  client.search({
+	    type:'Patient', 
+		query: {
+		
+          gender:'female',
+          '_has:Condition:patient:code':'271737000',
+		  birthdate:'le1993',
+		  _sort:'-birthdate',
+		  _count: 5
+				
+		}}).then( function(patients) {
+		  (patients.data.entry || []).forEach( function(patient) {    
+			var row = patientTable.insertRow();
+			var nameCell  = row.insertCell(0);
+		    var idCell  = row.insertCell(1);
+			
+			nameCell.innerHTML = getName(patient.resource);
+			idCell.innerHTML = patient.resource.id;
+		  });
+	  });
+
+	  // Function for plotting observation values on a chart. Gets invoked when Submit is clicked.
+	  function plotValues() {
+	    var patientId = inputBox.value;
+	
+		// Perform a search to retrieve all hemoglobin measurements for a given patient
+		client.search({
+		  type:'Observation', 
+		  query: {
+		  
+			patient: patientId, 
+			code: "718-7", // LOINC code for Hemoglobin in Blood (g/dL)
+			_sort: "date"
+			
+		  }}).then( function(observations) {
+		  
+            var dates = [];
+            var values = []; 
+                    
+			(observations.data.entry || []).forEach( function(observation) {
+              var date = observation.resource.effectiveDateTime;
+              var value = observation.resource.valueQuantity && observation.resource.valueQuantity.value;
+              if (date && value && dates.indexOf(date) == -1) {
+                dates.push(date);
+                values.push(value);
+              };
+            });
+
+            Plotly.newPlot(chartDiv, {
+              data: [{
+                x: dates,
+                y: values,
+                type: "scatter"
+              }],
+              layout: {
+                xaxis: {type: "date", tickformat: "%b %Y"},
+                yaxis: {range: [5,20]} // range from 5g/dL to 20g/dL
+              },
+              config: {
+                displayModeBar: false
+              }
+            });          
+          });
+	  }
+	
+	  // Helper function for extracting a patient's full name from a Patient resource 	
+  	  function getName(resource) {
+	    let name = '';
+	    if (resource.name && resource.name.length > 0) {
+	      if (resource.name[0].given && resource.name[0].given.length > 0) {
+	        name += `${resource.name[0].given[0]} `;
+	      }
+	      if (resource.name[0].family) {
+	        name += resource.name[0].family;
+	      }  
+	    }
+	    return name;
+	  }
+
+    </script>
+  </body>
+</html>
