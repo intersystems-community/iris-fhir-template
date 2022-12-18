@@ -3,39 +3,46 @@ Class fhirtemplate.Setup
 
 ClassMethod SetupFHIRServer() As %Status
 {
+    set ns=$namespace
     zn "HSLIB"
-    set namespace="FHIRSERVER"
+    set namespace=ns
     Set appKey = "/fhir/r4"
     Set strategyClass = "HS.FHIRServer.Storage.Json.InteractionsStrategy"
     Set metadataConfigKey = "HL7v40"
-    set importdir="/opt/irisapp/src"
+    ;set importdir="/opt/irisapp/src"
 
     //Install a Foundation namespace and change to it
     Do ##class(HS.HC.Util.Installer).InstallFoundation(namespace)
     zn namespace
 
     // Install elements that are required for a FHIR-enabled namespace
-    zw ##class(HS.FHIRServer.Installer).InstallNamespace()
+    do ##class(HS.FHIRServer.Installer).InstallNamespace()
 
     // Install an instance of a FHIR Service into the current namespace
-    zw ##class(HS.FHIRServer.Installer).InstallInstance(appKey, strategyClass, metadataConfigKey,"",0)
+    if '##class(HS.FHIRServer.ServiceAdmin).EndpointExists(appKey) {
+       do ##class(HS.FHIRServer.Installer).InstallInstance(appKey, strategyClass, metadataConfigKey,"",0)
+    }
 
     set strategy = ##class(HS.FHIRServer.API.InteractionsStrategy).GetStrategyForEndpoint(appKey)
     set config = strategy.GetServiceConfigData()
     set config.DebugMode = 4
-    zw strategy.SaveServiceConfigData(config)
-    // load test data
-    q ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles("/opt/irisapp/fhirdata/", namespace, appKey)
+    do strategy.SaveServiceConfigData(config)
+
+    set dir=$System.Util.ManagerDirectory()_"test-data-fhir"
+    write !," ====== Load test data in "_ns_" from "_dir
+    set st=##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles(dir, "FHIRServer", appKey)
+    if 'st write $System.Status.GetErrorText(st)
+    quit st
 }
 
 ClassMethod LoadPatientData(path, namespace, appKey) As %Status
 {
-    q ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles(path, namespace, appKey)
+    quit ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles(path, namespace, appKey)
 }
 
-ClassMethod AddApp() As %Status
+ClassMethod AddApp(ns={$namespace}) As %Status
 {
-    s namespace="FHIRSERVER"
+    set namespace=ns
     zn "%SYS"
     set webName = "/fhirUI" 
     set webProperties("NameSpace") = namespace 
@@ -44,7 +51,7 @@ ClassMethod AddApp() As %Status
     set webProperties("AutheEnabled") = 64 
     set webProperties("ServeFiles")=2
     set webProperties("Recurse")=1
-    q ##class(Security.Applications).Create(webName, .webProperties)
+    quit ##class(Security.Applications).Create(webName, .webProperties)
 }
 
 }
