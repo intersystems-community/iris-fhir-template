@@ -1,5 +1,11 @@
     zn "HSLIB"
+    zpm "load /home/irisowner/irisdev/ -v":1:1
+    halt
+    ///
+    
+    zn "HSLIB"
     set namespace="FHIRSERVER"
+    
     Set appKey = "/fhir/r4"
     Set strategyClass = "HS.FHIRServer.Storage.Json.InteractionsStrategy"
     set metadataPackages = $lb("hl7.fhir.r4.core@4.0.1")

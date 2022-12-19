@@ -1,4 +1,4 @@
-Class Setup
+Class fhirtemplate.Setup
 {
 
 ClassMethod SetupFHIRServer(ns) As %Status
