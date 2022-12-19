@@ -1,4 +1,4 @@
-    zn "HSLIB"
+    zn "USER"
     zpm "load /home/irisowner/irisdev/ -v":1:1
     halt
     ///
