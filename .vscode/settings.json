@@ -7,14 +7,15 @@
     "objectscript.conn" :{
       "ns": "FHIRSERVER",
       "active": true,
-      "username":"_SYSTEM",
+      "username": "_SYSTEM",
       "password": "SYS",
       "docker-compose": {
         "service": "iris",
         "internalPort": 52773
-      },"links": {
+      },
+      "links": {
         "FHIR UI Portal": "http://localhost:${port}/fhir/portal/patientlist.html",
-        "FHIR UI Demo": "http://localhost:${port}/csp/user/fhirUI/FHIRAppDemo.html",
+        "FHIR UI Demo": "http://localhost:${port}/fhirUI/FHIRAppDemo.html",
         "FHIR server test": "http://localhost:${port}/fhir/r4/metadata"
       }
     },
