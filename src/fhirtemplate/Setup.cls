@@ -1,13 +1,15 @@
 Class fhirtemplate.Setup
 {
 
-ClassMethod SetupFHIRServer() As %Status
+ClassMethod SetupFHIRServer(ns) As %Status
 {
-    set ns=$namespace
+    set ns=$g(ns,$namespace)
+    set ns="FHIRSERVER"
     zn "HSLIB"
     set namespace=ns
     Set appKey = "/fhir/r4"
     Set strategyClass = "HS.FHIRServer.Storage.Json.InteractionsStrategy"
+    set metadataPackages = $lb("hl7.fhir.r4.core@4.0.1")
     Set metadataConfigKey = "HL7v40"
     ;set importdir="/opt/irisapp/src"
 
@@ -20,7 +22,7 @@ ClassMethod SetupFHIRServer() As %Status
 
     // Install an instance of a FHIR Service into the current namespace
     if '##class(HS.FHIRServer.ServiceAdmin).EndpointExists(appKey) {
-       do ##class(HS.FHIRServer.Installer).InstallInstance(appKey, strategyClass, metadataConfigKey,"",0)
+       do ##class(HS.FHIRServer.Installer).InstallInstance(appKey, strategyClass, metadataPackages)
     }
 
     set strategy = ##class(HS.FHIRServer.API.InteractionsStrategy).GetStrategyForEndpoint(appKey)

@@ -1,28 +1,35 @@
-zn "HSLIB"
-set namespace="FHIRSERVER"
-Set appKey = "/fhir/r4"
-Set strategyClass = "HS.FHIRServer.Storage.Json.InteractionsStrategy"
-set metadataPackages = $lb("hl7.fhir.r4.core@4.0.1")
-set importdir="/opt/irisapp/src"
+    zn "USER"
+    zpm "load /home/irisowner/irisdev/ -v":1:1
+    zpm "install fhir-portal"
+    halt
+    /// the below is not important anymore. 
+    
+    zn "HSLIB"
+    set namespace="FHIRSERVER"
+    
+    Set appKey = "/fhir/r4"
+    Set strategyClass = "HS.FHIRServer.Storage.Json.InteractionsStrategy"
+    set metadataPackages = $lb("hl7.fhir.r4.core@4.0.1")
+    set importdir="/opt/irisapp/src"
 
-//Install a Foundation namespace and change to it
-Do ##class(HS.HC.Util.Installer).InstallFoundation(namespace)
-zn namespace
+    //Install a Foundation namespace and change to it
+    Do ##class(HS.HC.Util.Installer).InstallFoundation(namespace)
+    zn namespace
 
-// Install elements that are required for a FHIR-enabled namespace
-Do ##class(HS.FHIRServer.Installer).InstallNamespace()
+    // Install elements that are required for a FHIR-enabled namespace
+    Do ##class(HS.FHIRServer.Installer).InstallNamespace()
 
-// Install an instance of a FHIR Service into the current namespace
-Do ##class(HS.FHIRServer.Installer).InstallInstance(appKey, strategyClass, metadataPackages)
+    // Install an instance of a FHIR Service into the current namespace
+    Do ##class(HS.FHIRServer.Installer).InstallInstance(appKey, strategyClass, metadataPackages)
 
-// Configure FHIR Service instance to accept unauthenticated requests
-set strategy = ##class(HS.FHIRServer.API.InteractionsStrategy).GetStrategyForEndpoint(appKey)
-set config = strategy.GetServiceConfigData()
-set config.DebugMode = 4
-do strategy.SaveServiceConfigData(config)
+    // Configure FHIR Service instance to accept unauthenticated requests
+    set strategy = ##class(HS.FHIRServer.API.InteractionsStrategy).GetStrategyForEndpoint(appKey)
+    set config = strategy.GetServiceConfigData()
+    set config.DebugMode = 4
+    do strategy.SaveServiceConfigData(config)
 
-zw ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles("/opt/irisapp/fhirdata/", "FHIRServer", appKey)
+    zw ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles("/opt/irisapp/fhirdata/", "FHIRServer", appKey)
 
-do $System.OBJ.LoadDir("/opt/irisapp/src","ck",,1)
-//zpm "install fhir-portal"
-halt
+    do $System.OBJ.LoadDir("/opt/irisapp/src","ck",,1)
+    //zpm "install fhir-portal"
+    halt

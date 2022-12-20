@@ -60,7 +60,7 @@ http://localhost:32783/fhir/r4/Patient/1
 ## Testing FHIR API calls in simple frontend APP
 
 the very basic frontend app with search and get calls to Patient and Observation FHIR resources could be found here:
-http://localhost:32783/csp/user/fhirUI/FHIRAppDemo.html
+http://localhost:32783/fhirUI/FHIRAppDemo.html
 or from VSCode ObjectScript menu:
 <img width="616" alt="Screenshot 2020-08-07 at 17 34 49" src="https://user-images.githubusercontent.com/2781759/89657546-ea5fc500-d8d5-11ea-97ed-6fbbf84da655.png">
 
