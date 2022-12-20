@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Export generator="Cache" version="25">
-  <Document name="fhir-ui-sample.ZPM">
+  <Document name="fhir-server.ZPM">
     <Module>
-      <Name>fhir-ui-sample</Name>
-      <Version>1.0.0</Version>
-      <Description>Sample frontend for FHIR application</Description>
-      <Keywords>FHIR,Frontend</Keywords>
+      <Name>fhir-server</Name>
+      <Version>1.1.0</Version>
+      <Description>InterSystems FHIR Server with a demo frontend</Description>
+      <Keywords>FHIR,Server</Keywords>
       <Packaging>module</Packaging>
     <SourcesRoot>src</SourcesRoot>
     <Invokes>
