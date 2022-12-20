@@ -1,7 +1,8 @@
     zn "USER"
     zpm "load /home/irisowner/irisdev/ -v":1:1
+    zpm "install fhir-portal"
     halt
-    ///
+    /// the below is not important anymore. 
     
     zn "HSLIB"
     set namespace="FHIRSERVER"
