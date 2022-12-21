@@ -3,7 +3,7 @@
   <Document name="fhir-server.ZPM">
     <Module>
       <Name>fhir-server</Name>
-      <Version>1.1.0</Version>
+      <Version>1.1.1</Version>
       <Description>InterSystems FHIR Server with a demo frontend</Description>
       <Keywords>FHIR,Server</Keywords>
       <Packaging>module</Packaging>
@@ -12,7 +12,6 @@
     <Invoke Class="fhirtemplate.Setup" Method="SetupFHIRServer" Phase="Activate" When="After" ></Invoke>
     </Invokes>
     <Resource Name="fhirtemplate.PKG"/>
-    <Resource Name="PackageSample.PKG"/>
     <Resource Name="User.PKG"/>
     <FileCopy Name="data/fhir/" Target="${mgrdir}test-data-fhir/"/>
       <CSPApplication
