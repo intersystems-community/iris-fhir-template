@@ -21,6 +21,14 @@ USER>zpm "install fhir-server"
 
 This will install FHIR server in FHIRSERVER namespace.
 
+Or call the following for installing programmatically:
+```
+set sc=$zpm("install fhir-server")
+```
+
+
+### Docker (e.g. for dev purposes)
+
 Clone/git pull the repo into any local directory
 
 ```
