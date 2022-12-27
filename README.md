@@ -11,6 +11,16 @@ Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installi
 
 ## Installation 
 
+### IPM
+
+Open IRIS for Health installation with IPM client installed. Call in any namespace:
+
+```
+USER>zpm "install fhir-server"
+```
+
+This will install FHIR server in FHIRSERVER namespace.
+
 Clone/git pull the repo into any local directory
 
 ```
