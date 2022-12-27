@@ -1,4 +1,4 @@
-Class User.SQLvar
+Class fhirtemplate.SQLvar
 {
 
 ClassMethod GetJSON(json As %String, name As %String) As %String(MAXLEN="") [ SqlName = GetJSON, SqlProc ]
