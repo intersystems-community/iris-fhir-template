@@ -14,7 +14,9 @@ ClassMethod SetupFHIRServer(ns) As %Status
     ;set importdir="/opt/irisapp/src"
 
     //Install a Foundation namespace and change to it
-    Do ##class(HS.HC.Util.Installer).InstallFoundation(namespace)
+    //Do ##class(HS.HC.Util.Installer).InstallFoundation(namespace)
+    Do ##class(HS.Util.Installer.Foundation).Install(namespace)
+
     zn namespace
 
     // Install elements that are required for a FHIR-enabled namespace
@@ -46,11 +48,11 @@ ClassMethod AddApp(ns={$namespace}) As %Status
 {
     set namespace=ns
     zn "%SYS"
-    set webName = "/fhirUI" 
-    set webProperties("NameSpace") = namespace 
-    set webProperties("Enabled") = 1 
+    set webName = "/fhirUI"
+    set webProperties("NameSpace") = namespace
+    set webProperties("Enabled") = 1
     set webProperties("Path") = "/irisdev/app/fhirUI"
-    set webProperties("AutheEnabled") = 64 
+    set webProperties("AutheEnabled") = 64
     set webProperties("ServeFiles")=2
     set webProperties("Recurse")=1
     quit ##class(Security.Applications).Create(webName, .webProperties)

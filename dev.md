@@ -1,5 +1,5 @@
 # useful commands
-## clean up docker 
+## clean up docker
 ```
 docker system prune -f
 ```
@@ -21,7 +21,8 @@ docker-compose exec iris iris session iris -U FHIRServer
 
 ## FHIR Namespace setup
 
-do ##class(HS.HC.Util.Installer).InstallFoundation("FHIRServer")
+Do ##class(HS.Util.Installer.Foundation).Install(namespace)
+
 
 ## fhir server configuration setup
 ```

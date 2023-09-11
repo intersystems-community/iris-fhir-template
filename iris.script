@@ -2,18 +2,20 @@
     zpm "load /home/irisowner/irisdev/ -v":1:1
     zpm "install fhir-portal"
     halt
-    /// the below is not important anymore. 
-    
+    /// the below is not important anymore.
+
     zn "HSLIB"
     set namespace="FHIRSERVER"
-    
+
     Set appKey = "/fhir/r4"
     Set strategyClass = "HS.FHIRServer.Storage.Json.InteractionsStrategy"
     set metadataPackages = $lb("hl7.fhir.r4.core@4.0.1")
     set importdir="/opt/irisapp/src"
 
     //Install a Foundation namespace and change to it
-    Do ##class(HS.HC.Util.Installer).InstallFoundation(namespace)
+    //Do ##class(HS.HC.Util.Installer).InstallFoundation(namespace)
+    Do ##class(HS.Util.Installer.Foundation).Install(namespace)
+
     zn namespace
 
     // Install elements that are required for a FHIR-enabled namespace
