@@ -12,6 +12,7 @@
     <Invoke Class="fhirtemplate.Setup" Method="SetupFHIRServer" Phase="Activate" When="After" ></Invoke>
     </Invokes>
     <Resource Name="fhirtemplate.PKG"/>
+    <Resource Name="User.PKG"/>
     <FileCopy Name="data/fhir/" Target="${mgrdir}test-data-fhir/"/>
       <CSPApplication
         Url="/fhirUI"
