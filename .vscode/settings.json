@@ -6,7 +6,7 @@
       },
     "objectscript.conn" :{
       "ns": "FHIRSERVER",
-      "active": true,
+      "active": false,
       "username": "_SYSTEM",
       "password": "SYS",
       "docker-compose": {

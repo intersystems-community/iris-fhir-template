@@ -1,4 +1,4 @@
-Class fhirtemplate.SQLvar
+Class User.SQLvar
 {
 
 ClassMethod GetJSON(json As %String, name As %String) As %String(MAXLEN="") [ SqlName = GetJSON, SqlProc ]
@@ -79,4 +79,3 @@ ClassMethod GetFHIRPathOne(json As %String, path As %String, resourceType As %St
 }
 
 }
-
