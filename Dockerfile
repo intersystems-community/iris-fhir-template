@@ -4,7 +4,7 @@ FROM $IMAGE as builder
 WORKDIR /home/irisowner/irisdev
 #RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/irisapp
 
-# run iris and initial 
+# copy all the source into container and run iris. also run a initial script
 RUN --mount=type=bind,src=.,dst=. \
     iris start IRIS && \
 	iris session IRIS < iris.script && \
@@ -16,4 +16,4 @@ ADD --chown=${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} https://github.com/g
 
 RUN --mount=type=bind,source=/,target=/builder/root,from=builder \
     cp -f /builder/root/usr/irissys/iris.cpf /usr/irissys/iris.cpf && \
-    python3 /irisdev/app/copy-data.py -c /usr/irissys/iris.cpf -d /builder/root/ 
+    python3 /irisdev/app/copy-data.py -c /usr/irissys/iris.cpf -d /builder/root/
