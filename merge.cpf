@@ -4,7 +4,7 @@ ModifyService:Name=%Service_CallIn,Enabled=1,AutheEnabled=48
 
 # %ALL
 CreateNamespace:Name=%ALL,Globals=%DEFAULTDB,Routines=%DEFAULTDB
-CreateMapPackage:Namespace=%ALL,Name=User.SQLvar,Database=USER
+CreateMapPackage:Namespace=%ALL,Name=User,Database=USER
 
 # FHIRSERVER
 CreateResource:Name=%DB_FHIRSERVER_DATA,Description="FHIRSERVER_DATA database"
