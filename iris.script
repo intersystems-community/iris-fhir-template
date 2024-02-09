@@ -1,4 +1,5 @@
     zn "USER" 
+    zpm "install fhir-portal"
     zpm "load /home/irisowner/irisdev/ -v"
     // After FHIRSERVER creation
     // need to add User.SQLvar.cls in FHIRSERVER
@@ -6,5 +7,9 @@
     // with JSON functions
     zn "FHIRSERVER"
     do $System.OBJ.LoadDir("/home/irisowner/irisdev/src/User","ck",,1)
-    #; zpm "install fhir-portal"
+    #; Use FHIR.utils.install 
+    #; to add new FHIR servers
+    #; zn "USER"
+    #; do ##class(FHIR.utils).install("PID")
+    #; do ##class(FHIR.utils).install("CLINIC")
     halt
