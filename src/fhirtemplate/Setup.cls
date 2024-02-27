@@ -4,7 +4,7 @@ Class fhirtemplate.Setup
 ClassMethod SetupFHIRServer(ns="FHIRSERVER",appKey="/fhir/r4",testLoad=1) As %Status
 {
     set st=$$$OK
-    Write !,"Initialization with parameters: Namespace: "_ns_", Webapp: "_appKey_", AddTestData: "_testLoad
+    Write !,"=== Initialization with parameters: Namespace: "_ns_", Webapp: "_appKey_", AddTestData: "_testLoad,!
     zn "HSLIB"
     set namespace=ns
     ;Set appKey = "/fhir/r4"
