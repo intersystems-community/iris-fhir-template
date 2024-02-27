@@ -12,10 +12,11 @@
     <Default Name="AddTestData" Value="0" />
     <SourcesRoot>src</SourcesRoot>
     <Invokes>
-    <Invoke Class="fhirtemplate.Setup" Method="SetupFHIRServer" Phase="Activate" When="After" ></Invoke>
+    <Invoke Class="fhirtemplate.Setup" Method="SetupFHIRServer" Phase="Activate" When="After" >
       <Arg>${Namespace}</Arg>
-		  <Arg>${Webapp}</Arg>
+      <Arg>${Webapp}</Arg>
       <Arg>${AddTestData}</Arg>
+     </Invoke>
     </Invokes>
     <Resource Name="fhirtemplate.PKG"/>
     <Resource Name="User.PKG"/>
