@@ -7,13 +7,13 @@
       <Description>InterSystems FHIR Server with a demo frontend</Description>
       <Keywords>FHIR,Server</Keywords>
       <Packaging>module</Packaging>
-    <Default Name="ns" Value="FHIRSERVER" />
+    <Default Name="nnn" Value="FHIRSERVER" />
     <Default Name="Webapp" Value="/fhir/r4" />
     <Default Name="AddTestData" Value="1" />
     <SourcesRoot>src</SourcesRoot>
     <Invokes>
     <Invoke Class="fhirtemplate.Setup" Method="SetupFHIRServer" Phase="Activate" When="After" >
-      <Arg>TTTTTT</Arg>
+      <Arg>${nnn}</Arg>
       <Arg>${Webapp}</Arg>
       <Arg>${AddTestData}</Arg>
      </Invoke>
