@@ -3,13 +3,13 @@
   <Document name="fhir-server.ZPM">
     <Module>
       <Name>fhir-server</Name>
-      <Version>1.3.2</Version>
+      <Version>1.3.3</Version>
       <Description>InterSystems FHIR Server with a demo frontend</Description>
       <Keywords>FHIR,Server</Keywords>
       <Packaging>module</Packaging>
-    <Default Name="Namespace" Value="FHIRSERVER7777" />
-	  <Default Name="Webapp" Value="/fhir/r47777" />
-    <Default Name="AddTestData" Value="0" />
+    <Default Name="Namespace" Value="FHIRSERVER" />
+	  <Default Name="Webapp" Value="/fhir/r4" />
+    <Default Name="AddTestData" Value="1" />
     <SourcesRoot>src</SourcesRoot>
     <Invokes>
     <Invoke Class="fhirtemplate.Setup" Method="SetupFHIRServer" Phase="Activate" When="After" >
@@ -34,7 +34,7 @@
 &#13;Namespace - to alter created/modified namespace (now/default FHIRSERVER)
 &#13;AddTestData - import some test data to the FHIR server, otherwise don't
 &#13;Webapp - provide the name for the web application to expose R4 API. /fhir/r4 is by default
-&#13;USER>zpm "install fhir-server -Dzpm.Namespace=ALTERFHIRSERVER -Dzpm.Webapp=/fhir/r444 Dzpm.AddTestData=0" 
+&#13;USER>zpm "install fhir-server -Dzpm.Namespace=ALTERFHIRSERVER -Dzpm.Webapp=/fhir/r444 -Dzpm.AddTestData=0" 
 </AfterInstallMessage>
   </Module>
  </Document>
