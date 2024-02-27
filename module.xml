@@ -31,7 +31,7 @@
        />
     <AfterInstallMessage>
 &#13;You can change the default settings
-&#13;Nspace - to alter created/modified namespace (now/default FHIRSERVER)
+&#13;Name - to alter created/modified namespace (now/default FHIRSERVER)
 &#13;AddTestData - import some test data to the FHIR server, otherwise don't
 &#13;Webapp - provide the name for the web application to expose R4 API. /fhir/r4 is by default
 &#13;USER>zpm "install fhir-server -Dzpm.name=ALTERFHIRSERVER -Dzpm.Webapp=/fhir/r7 -Dzpm.AddTestData=0" 
