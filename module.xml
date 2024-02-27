@@ -28,7 +28,6 @@
         Recurse="1"
         CookiePath="/fhirUI"
        />
-    </Module>
     <AfterInstallMessage>
 &#13;You can change the default settings
 &#13;Namespace - to alter created/modified namespace (now/default FHIRSERVER)
@@ -36,5 +35,6 @@
 &#13;Webapp - provide the name for the web application to expose R4 API. /fhir/r4 is by default
 &#13;USER>zpm "install fhir-server -Dzpm.Namespace=ALTERFHIRSERVER -Dzpm.Webapp=/fhir/r444 Dzpm.AddTestData=0" 
 </AfterInstallMessage>
-  </Document>
+  </Module>
+ </Document>
 </Export>
