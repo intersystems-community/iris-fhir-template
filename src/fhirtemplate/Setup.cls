@@ -1,13 +1,13 @@
 Class fhirtemplate.Setup
 {
 
-ClassMethod SetupFHIRServer(ns) As %Status
+ClassMethod SetupFHIRServer(ns="FHIRSERVER222",appKey="/fhir/r444",testLoad=1) As %Status
 {
-    set ns=$g(ns,$namespace)
-    set ns="FHIRSERVER"
+    ;set ns=$g(ns,$namespace)
+    ;set ns="FHIRSERVER"
     zn "HSLIB"
     set namespace=ns
-    Set appKey = "/fhir/r4"
+    ;Set appKey = "/fhir/r4"
     Set strategyClass = "HS.FHIRServer.Storage.Json.InteractionsStrategy"
     set metadataPackages = $lb("hl7.fhir.r4.core@4.0.1")
     Set metadataConfigKey = "HL7v40"
@@ -32,10 +32,12 @@ ClassMethod SetupFHIRServer(ns) As %Status
     set config.DebugMode = 4
     do strategy.SaveServiceConfigData(config)
 
-    set dir=$System.Util.ManagerDirectory()_"test-data-fhir"
-    write !," ====== Load test data in "_ns_" from "_dir
-    set st=##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles(dir, "FHIRServer", appKey)
-    if 'st write $System.Status.GetErrorText(st)
+    if testLoad {
+     set dir=$System.Util.ManagerDirectory()_"test-data-fhir"
+     write !," ====== Load test data in "_ns_" from "_dir
+     set st=##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles(dir, "FHIRServer", appKey)
+     if 'st write $System.Status.GetErrorText(st)
+    }
     quit st
 }
 
