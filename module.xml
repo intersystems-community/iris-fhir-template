@@ -7,9 +7,9 @@
       <Description>InterSystems FHIR Server with a demo frontend</Description>
       <Keywords>FHIR,Server</Keywords>
       <Packaging>module</Packaging>
-    <Default Name="Namespace" Value="FHIRSERVER" />
-	  <Default Name="Webapp" Value="/fhir/r4" />
-    <Default Name="AddTestData" Value="1" />
+    <Default Name="Namespace" Value="FHIRSERVER7777" />
+	  <Default Name="Webapp" Value="/fhir/r47777" />
+    <Default Name="AddTestData" Value="0" />
     <SourcesRoot>src</SourcesRoot>
     <Invokes>
     <Invoke Class="fhirtemplate.Setup" Method="SetupFHIRServer" Phase="Activate" When="After" ></Invoke>
