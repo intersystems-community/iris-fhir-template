@@ -1,9 +1,9 @@
 Class fhirtemplate.Setup
 {
 
-ClassMethod SetupFHIRServer(ns="FHIRSERVER222",appKey="/fhir/r444",testLoad=1) As %Status
+ClassMethod SetupFHIRServer(ns="FHIRSERVER",appKey="/fhir/r4",testLoad=1) As %Status
 {
-    ;set ns=$g(ns,$namespace)
+    set st=$$$OK
     ;set ns="FHIRSERVER"
     zn "HSLIB"
     set namespace=ns
