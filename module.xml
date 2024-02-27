@@ -13,7 +13,7 @@
     <SourcesRoot>src</SourcesRoot>
     <Invokes>
     <Invoke Class="fhirtemplate.Setup" Method="SetupFHIRServer" Phase="Activate" When="After" >
-      <Arg>SSSSSS</Arg>
+      <Arg>${ns}</Arg>
       <Arg>${Webapp}</Arg>
       <Arg>${AddTestData}</Arg>
      </Invoke>
