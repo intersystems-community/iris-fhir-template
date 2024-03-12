@@ -1,0 +1,28 @@
+[Actions]
+# Service CallIn
+ModifyService:Name=%Service_CallIn,Enabled=1,AutheEnabled=48
+
+# %ALL
+CreateNamespace:Name=%ALL,Globals=%DEFAULTDB,Routines=%DEFAULTDB
+CreateMapPackage:Namespace=%ALL,Name=User.SQLvar,Database=USER
+
+# FHIRSERVER
+CreateResource:Name=%DB_FHIRSERVER_DATA,Description="FHIRSERVER_DATA database"
+CreateDatabase:Name=FHIRSERVER_DATA,Directory=/usr/irissys/mgr/FHIRSERVER_DATA
+CreateResource:Name=%DB_FHIRSERVER_CODE,Description="FHIRSERVER_CODE database"
+CreateDatabase:Name=FHIRSERVER_CODE,Directory=/usr/irissys/mgr/FHIRSERVER_CODE
+CreateNamespace:Name=FHIRSERVER,Globals=FHIRSERVER_DATA,Routines=FHIRSERVER_CODE,Interop=1
+
+# CLINIC
+CreateResource:Name=%DB_CLINIC_DATA,Description="CLINIC_DATA database"
+CreateDatabase:Name=CLINIC_DATA,Directory=/usr/irissys/mgr/CLINIC_DATA
+CreateResource:Name=%DB_CLINIC_CODE,Description="CLINIC_CODE database"
+CreateDatabase:Name=CLINIC_CODE,Directory=/usr/irissys/mgr/CLINIC_CODE
+CreateNamespace:Name=CLINIC,Globals=CLINIC_DATA,Routines=CLINIC_CODE,Interop=1
+
+# PID
+CreateResource:Name=%DB_PID_DATA,Description="PID_DATA database"
+CreateDatabase:Name=PID_DATA,Directory=/usr/irissys/mgr/PID_DATA
+CreateResource:Name=%DB_PID_CODE,Description="PID_CODE database"
+CreateDatabase:Name=PID_CODE,Directory=/usr/irissys/mgr/PID_CODE
+CreateNamespace:Name=PID,Globals=PID_DATA,Routines=PID_CODE,Interop=1

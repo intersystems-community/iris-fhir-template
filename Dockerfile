@@ -7,6 +7,7 @@ WORKDIR /home/irisowner/irisdev
 # copy all the source into container and run iris. also run a initial script
 RUN --mount=type=bind,src=.,dst=. \
     iris start IRIS && \
+    iris merge IRIS merge.cpf && \
 	iris session IRIS < iris.script && \
     iris stop IRIS quietly
 

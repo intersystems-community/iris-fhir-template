@@ -1,0 +1,14 @@
+[Actions]
+# Service CallIn
+ModifyService:Name=%Service_CallIn,Enabled=1,AutheEnabled=48
+
+# %ALL
+CreateNamespace:Name=%ALL,Globals=%DEFAULTDB,Routines=%DEFAULTDB
+CreateMapPackage:Namespace=%ALL,Name=User,Database=USER
+
+# FHIRSERVER
+CreateResource:Name=%DB_FHIRSERVER_DATA,Description="FHIRSERVER_DATA database"
+CreateDatabase:Name=FHIRSERVER_DATA,Directory=/usr/irissys/mgr/FHIRSERVER_DATA
+CreateResource:Name=%DB_FHIRSERVER_CODE,Description="FHIRSERVER_CODE database"
+CreateDatabase:Name=FHIRSERVER_CODE,Directory=/usr/irissys/mgr/FHIRSERVER_CODE
+CreateNamespace:Name=FHIRSERVER,Globals=FHIRSERVER_DATA,Routines=FHIRSERVER_CODE,Interop=1
