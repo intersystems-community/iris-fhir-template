@@ -6,17 +6,17 @@ docker system prune -f
 
 ## build container with no cache
 ```
-docker-compose build --no-cache
+docker compose build --no-cache --progress=plain
 ```
 
 ## start container
 ```
-docker-compose up -d
+docker compose up -d
 ```
 
 ## open terminal to docker
 ```
-docker-compose exec iris iris session iris -U FHIRServer
+docker compose exec iris iris session iris -U FHIRServer
 ```
 
 ## FHIR Namespace setup
@@ -40,4 +40,7 @@ kill ^ISCLOG
 set ^%ISCLOG=3
 
 
+
+http://localhost:32783/fhirUI/irisfhir.json
+http://localhost:32783/fhirUI/irisfhir_swagger.json
 

@@ -11,6 +11,11 @@ RUN --mount=type=bind,src=.,dst=. \
 	iris session IRIS < iris.script && \
     iris stop IRIS quietly
 
+
+RUN old=http://localhost:52773/crud/_spec && \
+    new=/fhirUI/irisfhir_swagger.json && \
+	sed -i "s|$old|$new|g" /usr/irissys/csp/swagger-ui/index.html
+
 FROM $IMAGE as final
 
 ADD --chown=${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} https://github.com/grongierisc/iris-docker-multi-stage-script/releases/latest/download/copy-data.py /irisdev/app/copy-data.py

@@ -1,21 +1,22 @@
-version: '3.6'
+
 services:
   iris:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
     restart: always
     hostname: fhir-template
     container_name: fhir-template
 #   command: --check-caps false
-    ports: 
+    ports:
       - 32782:1972
       - 32783:52773
       - 32784:53773
-    command: 
+    command:
       - -a
       - iris session iris -U%SYS '##class(Security.Users).UnExpireUserPasswords("*")'
       - --check-caps false
     volumes:
       - ./data:/data
+      - ./fhirUI:/usr/irissys/csp/fhirUI
       - ./:/home/irisowner/irisdev
