@@ -9,7 +9,7 @@ It setups a FHIR SERVER, imports the test data, demoes REST API usage with a sim
 ## Prerequisites
 Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Docker desktop](https://www.docker.com/products/docker-desktop) installed.
 
-## Installation 
+## Installation
 
 ### IPM
 
@@ -64,6 +64,15 @@ FHIRSERVER>d ##class(fhirtemplate.Setup).LoadPatientData("/irisdev/app/output/fh
 Open URL http://localhost:32783/fhir/r4/metadata
 you should see the output of fhir resources on this server
 
+## Swagger UI
+
+You can get the Swagger UI and work with it at:
+http://localhost:32783/swagger-ui/index.html
+
+To try it Open /Patient/{id} resource and call for the patient 3.
+Here is what you should see:
+<img width="1273" alt="Image" src="https://github.com/user-attachments/assets/8dc340cc-e5e4-4bf7-9e16-8169f76e27b6" />
+
 ## Testing Postman calls
 Get fhir resources metadata
 GET call for http://localhost:32783/fhir/r4/metadata
@@ -84,6 +93,15 @@ or from VSCode ObjectScript menu:
 
 While open the page you will see search result for female anemic patients and graphs a selected patient's hemoglobin values:
 <img width="484" alt="Screenshot 2020-08-06 at 18 51 22" src="https://user-images.githubusercontent.com/2781759/89657718-2b57d980-d8d6-11ea-800f-d09dfb48f8bc.png">
+
+
+## More sophisticated UI
+
+The example of a richer UI around the FHIR data can be observed at:
+http://localhost:32783/fhir/portal/patientlist.html
+
+Here is an example screenshot of it:
+<img width="1381" alt="Image" src="https://github.com/user-attachments/assets/0aa18442-90ed-495a-9fb0-7ced2f121527" />
 
 
 ## Development Resources
