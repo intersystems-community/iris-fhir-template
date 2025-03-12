@@ -23,7 +23,7 @@
     <Resource Name="User.PKG"/>
     <Resource Name="FHIR.PKG"/>
     <FileCopy Name="data/fhir/" Target="${mgrdir}test-data-fhir/"/>
-      <CSPApplication
+      <WebApplication
         Url="/fhirUI"
         SourcePath="/fhirUI"
         DeployPath="{$cspdir}/fhirUI"
