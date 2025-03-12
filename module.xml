@@ -3,7 +3,7 @@
   <Document name="fhir-server.ZPM">
     <Module>
       <Name>fhir-server</Name>
-      <Version>1.3.3</Version>
+      <Version>1.3.4</Version>
       <Description>InterSystems FHIR Server with a demo frontend</Description>
       <Keywords>FHIR,Server</Keywords>
       <Packaging>module</Packaging>
