@@ -23,7 +23,7 @@
     <Resource Name="User.PKG"/>
     <Resource Name="FHIR.PKG"/>
     <FileCopy Name="data/fhir/" Target="${mgrdir}test-data-fhir/"/>
-      <WebApplication
+      <CSPApplication
         Url="/fhirUI"
         SourcePath="/fhirUI"
         DeployPath="{$cspdir}/fhirUI"
@@ -36,7 +36,7 @@
 &#13;Name - to alter created/modified namespace (now/default FHIRSERVER)
 &#13;AddTestData - import some test data to the FHIR server, otherwise don't
 &#13;Webapp - provide the name for the web application to expose R4 API. /fhir/r4 is by default
-&#13;USER>zpm "install fhir-server -Dzpm.name=ALTERFHIRSERVER -Dzpm.Webapp=/fhir/r7 -Dzpm.AddTestData=0" 
+&#13;USER>zpm "install fhir-server -Dzpm.name=ALTERFHIRSERVER -Dzpm.Webapp=/fhir/r7 -Dzpm.AddTestData=0"
 </AfterInstallMessage>
   </Module>
  </Document>
