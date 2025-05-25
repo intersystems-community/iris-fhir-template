@@ -54,7 +54,7 @@ docker-compose exec iris iris session iris -U FHIRServer
 ```
 and call the loader method:
 ```
-FHIRSERVER>d ##class(fhirtemplate.Setup).LoadPatientData("/irisdev/app/output/fhir","FHIRSERVER","/fhir/r4")
+FHIRSERVER>d ##class(fhirtemplate.Setup).LoadPatientData("/data/fhir","FHIRSERVER","/fhir/r4")
 ```
 
  with using the [following project](https://github.com/intersystems-community/irisdemo-base-synthea)
