@@ -38,7 +38,7 @@
 &#13;Name - to alter created/modified namespace (now/default FHIRSERVER)
 &#13;AddTestData - import some test data to the FHIR server, otherwise don't
 &#13;Webapp - provide the name for the web application to expose R4 API. /fhir/r4 is by default
-&#13;InteractionsStrategy - defines the FHIR Search and Operations available. JsonAdvSql is the latest and greatest in IRIS for Health 2023.3 and later.
+&#13;InteractionsStrategy - defines the FHIR Search and Operations available. JsonAdvSql is more performant and offers more search parameters, operations, and OAuth scope support.
 &#13;USER>zpm "install fhir-server -Dzpm.name=ALTERFHIRSERVER -Dzpm.InteractionsStrategy=JsonAdvSql -Dzpm.Webapp=/fhir/r7 -Dzpm.AddTestData=0"
 </AfterInstallMessage>
   </Module>
