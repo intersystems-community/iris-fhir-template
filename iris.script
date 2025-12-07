@@ -2,9 +2,9 @@
     zpm "install fhir-portal"
     zpm "install swagger-ui"
     zpm "load /home/irisowner/irisdev/ -v"
-    #; Use FHIR.utils.install
-    #; to add new FHIR servers
-    #; zn "USER"
-    #; do ##class(FHIR.utils).install("PID")
-    #; do ##class(FHIR.utils).install("CLINIC")
+    ; Use FHIR.utils.install
+    ; to add new FHIR servers
+    ; zn "USER"
+    ; do ##class(FHIR.utils).install("PID")
+    ; do ##class(FHIR.utils).install("CLINIC")
     halt
