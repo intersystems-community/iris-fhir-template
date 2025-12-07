@@ -1,14 +1,18 @@
 Class fhirtemplate.Setup
 {
 
-ClassMethod SetupFHIRServer(ns="FHIRSERVER",appKey="/fhir/r4",testLoad=1) As %Status
+ClassMethod SetupFHIRServer(ns = "FHIRSERVER", appKey = "/fhir/r4", testLoad = 1, interactionsStrategy As %String(VALUELIST=",Json,JsonAdvSql") = "Json") As %Status
 {
     set st=$$$OK
     Write !,"=== Initialization with parameters: Namespace: "_ns_", Webapp: "_appKey_", AddTestData: "_testLoad,!
     zn "HSLIB"
     set namespace=ns
     ;Set appKey = "/fhir/r4"
-    Set strategyClass = "HS.FHIRServer.Storage.Json.InteractionsStrategy"
+    if interactionsStrategy = "Json" {
+        set strategyClass = "HS.FHIRServer.Storage.Json.InteractionsStrategy"
+    } elseif interactionsStrategy = "JsonAdvSql" {
+        set strategyClass = "HS.FHIRServer.Storage.JsonAdvSQL.InteractionsStrategy"
+    }
     set metadataPackages = $lb("hl7.fhir.r4.core@4.0.1")
     Set metadataConfigKey = "HL7v40"
     ;set importdir="/opt/irisapp/src"
@@ -46,7 +50,7 @@ ClassMethod LoadPatientData(path, namespace, appKey) As %Status
     quit ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles(path, namespace, appKey)
 }
 
-ClassMethod AddApp(ns={$namespace}) As %Status
+ClassMethod AddApp(ns = {$namespace}) As %Status
 {
     set namespace=ns
     zn "%SYS"

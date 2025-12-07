@@ -1,13 +1,17 @@
 Class FHIR.utils
 {
 
-ClassMethod install(NAMESPACE As %String = "FHIRDEMO") As %Status
+ClassMethod install(NAMESPACE As %String = "FHIRDEMO", interactionsStrategy As %String(VALUELIST=",Json,JsonAdvSql") = "Json") As %Status
 {
     set sc = $$$OK
     set ns = $NAMESPACE
     zn "HSLIB"
     Set appKey = "/"_$zcvt(NAMESPACE,"l")_"/fhir/r4"
-    Set strategyClass = "HS.FHIRServer.Storage.Json.InteractionsStrategy"
+    if interactionsStrategy = "Json" {
+        set strategyClass = "HS.FHIRServer.Storage.Json.InteractionsStrategy"
+    } elseif interactionsStrategy = "JsonAdvSql" {
+        set strategyClass = "HS.FHIRServer.Storage.JsonAdvSQL.InteractionsStrategy"
+    }
     Set metadataConfigKey = "HL7v40"
 
     //Install a Foundation namespace and change to it
